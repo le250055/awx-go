@@ -10,11 +10,11 @@
 - [ ] Support Settings endpoints;
 - [ ] Support Me endpoints;
 - [ ] Support Dashboard endpoints;
-- [x] Support Orgnizations endpoints;
+- [ ] Support Orgnizations endpoints;
 - [x] Support Users endpoints;
 - [x] Support Projects endpoints;
 - [x] Support ProjectUpdates endpoints;
-- [x] Support Teams endpoints;
+- [ ] Support Teams endpoints;
 - [ ] Support Credentials endpoints;
 - [ ] Support CredentialTypes endpoints;
 - [ ] Support Applications endpoints;
@@ -32,9 +32,7 @@
 - [ ] Support SystemJobTemplates endpoints;
 - [ ] Support SystemJobs endpoints;
 - [ ] Support Schedules endpoints;
-- [x] Support Roles endpoints:
-  - [x] Support for User Grant and revoke roles
-  - [x] Support for Team Grant and revoke roles
+- [ ] Support Roles endpoints;
 - [ ] Support NotificationTemplates endpoints;
 - [ ] Support Notifications endpoints;
 - [ ] Support Labels endpoints;

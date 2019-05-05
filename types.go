@@ -25,8 +25,6 @@ type Related struct {
 	NamedURL                     string `json:"named_url"`
 	CreatedBy                    string `json:"created_by"`
 	ModifiedBy                   string `json:"modified_by"`
-	Users                        string `json:"users"`
-	Roles                        string `json:"roles"`
 	JobTemplates                 string `json:"job_templates"`
 	VariableData                 string `json:"variable_data"`
 	RootGroups                   string `json:"root_groups"`
@@ -50,14 +48,10 @@ type Related struct {
 	Organization                 string `json:"organization"`
 	Labels                       string `json:"labels"`
 	Inventory                    string `json:"inventory"`
-	Inventories                  string `json:"inventories"`
-	WorkflowJobTemplate          string `json:"workflow_job_templates"`
-	Admins                       string `json:"admins"`
 	Project                      string `json:"project"`
 	Credential                   string `json:"credential"`
 	ExtraCredentials             string `json:"extra_credentials"`
 	Credentials                  string `json:"credentials"`
-	NotificationTemplates        string `json:"notification_templates"`
 	NotificationTemplatesError   string `json:"notification_templates_error"`
 	NotificationTemplatesSuccess string `json:"notification_templates_success"`
 	Jobs                         string `json:"jobs"`
@@ -72,12 +66,12 @@ type Related struct {
 	JobEvents                    string `json:"job_events"`
 	JobTemplate                  string `json:"job_template"`
 	Cancel                       string `json:"cancel"`
-	Applications                 string `json:"applications"`
 	ProjectUpdate                string `json:"project_update"`
 	CreateSchedule               string `json:"create_schedule"`
 	Relaunch                     string `json:"relaunch"`
 	AdminOfOrganizations         string `json:"admin_of_organizations"`
 	Organizations                string `json:"organizations"`
+	Roles                        string `json:"roles"`
 	Teams                        string `json:"teams"`
 	Projects                     string `json:"projects"`
 	PotentialChildren            string `json:"potential_children"`
@@ -86,19 +80,6 @@ type Related struct {
 	AdHocCommandEvents           string `json:"ad_hoc_command_events"`
 	Children                     string `json:"children"`
 	AnsibleFacts                 string `json:"ansible_facts"`
-	OwnerTeams                   string `json:"owner_teams"`
-	OwnerUsers                   string `json:"owner_users"`
-	CredentialType               string `json:"credential_type"`
-}
-
-// RelatedFieldCount represents the awx api organization related field count field.
-type RelatedFieldCount struct {
-	JobTemplates int `json:"job_templates"`
-	Users        int `json:"users"`
-	Teams        int `json:"teams"`
-	Admins       int `json:"admins"`
-	Inventories  int `json:"inventories"`
-	Projects     int `json:"projects"`
 }
 
 // OrgnizationSummary represents the awx api orgnization summary fields.
@@ -139,20 +120,12 @@ type ApplyRole struct {
 
 // ObjectRoles represents the awx api object roles.
 type ObjectRoles struct {
-	UseRole               *ApplyRole `json:"use_role"`
-	AdminRole             *ApplyRole `json:"admin_role"`
-	AdhocRole             *ApplyRole `json:"adhoc_role"`
-	UpdateRole            *ApplyRole `json:"update_role"`
-	ReadRole              *ApplyRole `json:"read_role"`
-	ExecuteRole           *ApplyRole `json:"execute_role"`
-	MemberRole            *ApplyRole `json:"member_role"`
-	NotificationAdminRole *ApplyRole `json:"notification_admin_role"`
-	WorkflowAdminRole     *ApplyRole `json:"workflow_admin_role"`
-	CredentialAdminRole   *ApplyRole `json:"credential_admin_role"`
-	JobTemplateAdminRole  *ApplyRole `json:"job_template_admin_role"`
-	ProjectAdminRole      *ApplyRole `json:"project_admin_role"`
-	AuditorRole           *ApplyRole `json:"auditor_role"`
-	InventoryAdminRole    *ApplyRole `json:"inventory_admin_role"`
+	UseRole     *ApplyRole `json:"use_role"`
+	AdminRole   *ApplyRole `json:"admin_role"`
+	AdhocRole   *ApplyRole `json:"adhoc_role"`
+	UpdateRole  *ApplyRole `json:"update_role"`
+	ReadRole    *ApplyRole `json:"read_role"`
+	ExecuteRole *ApplyRole `json:"execute_role"`
 }
 
 // UserCapabilities represents the awx api user capabilities.
@@ -179,7 +152,6 @@ type Summary struct {
 	ModifiedBy         *ByUserSummary         `json:"modified_by"`
 	ObjectRoles        *ObjectRoles           `json:"object_roles"`
 	UserCapabilities   *UserCapabilities      `json:"user_capabilities"`
-	RelatedFieldCounts *RelatedFieldCount     `json:"related_field_counts"`
 	Project            *Project               `json:"project"`
 	LastJob            map[string]interface{} `json:"last_job"`
 	CurrentJob         map[string]interface{} `json:"current_job"`
@@ -237,35 +209,6 @@ type Project struct {
 	LastUpdated           time.Time `json:"last_updated"`
 }
 
-// Team represent the awx api team.
-type Team struct {
-	ID            int       `json:"id"`
-	Type          string    `json:"type"`
-	URL           string    `json:"url"`
-	Related       *Related  `json:"related"`
-	SummaryFields *Summary  `json:"summary_fields"`
-	Created       time.Time `json:"created"`
-	Modified      time.Time `json:"modified"`
-	Name          string    `json:"name"`
-	Description   string    `json:"description"`
-	Organization  int       `json:"organization"`
-}
-
-// Organization repesent the awx api organization
-type Organization struct {
-	ID               int       `json:"id"`
-	Type             string    `json:"type"`
-	URL              string    `json:"url"`
-	Related          *Related  `json:"related"`
-	SummaryFields    *Summary  `json:"summary_fields"`
-	Created          time.Time `json:"created"`
-	Modified         time.Time `json:"modified"`
-	Name             string    `json:"name"`
-	Description      string    `json:"description"`
-	CustomVirtualEnv string    `json:"custom_virtualenv"`
-	FirstName        string    `json:"`
-}
-
 // Inventory represents the awx api inventory.
 type Inventory struct {
 	ID                           int         `json:"id"`
@@ -294,22 +237,13 @@ type Inventory struct {
 	PendingDeletion              bool        `json:"pending_deletion"`
 }
 
-// Credential represent an AWX credential
+// Credential represents the awx api credential.
 type Credential struct {
-	ID               int                    `json:"id"`
-	Type             string                 `json:"type"`
-	URL              string                 `json:"url"`
-	Related          *Related               `json:"related"`
-	SummaryFields    *Summary               `json:"summary_fields"`
-	Created          time.Time              `json:"created"`
-	Modified         time.Time              `json:"modified"`
-	Name             string                 `json:"name"`
-	CredentialTypeID int                    `json:"credential_type_id"`
-	Kind             string                 `json:"kind"`
-	Description      string                 `json:"description"`
-	Organization     int                    `json:"organization"`
-	CredentialType   int                    `json:"credential_type"`
-	Inputs           map[string]interface{} `json:"inputs"`
+	Description      string `json:"description"`
+	CredentialTypeID int    `json:"credential_type_id"`
+	ID               int    `json:"id"`
+	Kind             string `json:"kind"`
+	Name             string `json:"name"`
 }
 
 // UnifiedJobTemplate represents the awx api unified job template.
