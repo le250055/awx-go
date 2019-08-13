@@ -673,6 +673,19 @@ type Organization struct {
 	CustomVirtualenv interface{}   `json:"custom_virtualenv"`
 }
 
+type Team struct {
+	ID            int           `json:"id"`
+	Type          string        `json:"type"`
+	URL           string        `json:"url"`
+	Related       Related       `json:"related"`
+	SummaryFields SummaryFields `json:"summary_fields"`
+	Created       time.Time     `json:"created"`
+	Modified      time.Time     `json:"modified"`
+	Name          string        `json:"name"`
+	Description   string        `json:"description"`
+	Organization  int           `json:"organization"`
+}
+
 type CreatedBy struct {
 	ID        int    `json:"id"`
 	Username  string `json:"username"`
