@@ -25,6 +25,8 @@ type AWX struct {
 	UserService           *UserService
 	GroupService          *GroupService
 	HostService           *HostService
+	OrganizationService   *OrganizationService
+	TeamService	*TeamService
 }
 
 // Client implement http client.
