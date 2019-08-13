@@ -659,3 +659,100 @@ type Host struct {
 	InsightsSystemID     interface{}  `json:"insights_system_id"`
 	AnsibleFactsModified interface{}  `json:"ansible_facts_modified"`
 }
+
+type Organization struct {
+	ID               int           `json:"id"`
+	Type             string        `json:"type"`
+	URL              string        `json:"url"`
+	Related          Related       `json:"related"`
+	SummaryFields    SummaryFields `json:"summary_fields"`
+	Created          time.Time     `json:"created"`
+	Modified         time.Time     `json:"modified"`
+	Name             string        `json:"name"`
+	Description      string        `json:"description"`
+	CustomVirtualenv interface{}   `json:"custom_virtualenv"`
+}
+
+type CreatedBy struct {
+	ID        int    `json:"id"`
+	Username  string `json:"username"`
+	FirstName string `json:"first_name"`
+	LastName  string `json:"last_name"`
+}
+type ModifiedBy struct {
+	ID        int    `json:"id"`
+	Username  string `json:"username"`
+	FirstName string `json:"first_name"`
+	LastName  string `json:"last_name"`
+}
+type AdminRole struct {
+	ID          int    `json:"id"`
+	Description string `json:"description"`
+	Name        string `json:"name"`
+}
+type ReadRole struct {
+	ID          int    `json:"id"`
+	Description string `json:"description"`
+	Name        string `json:"name"`
+}
+type MemberRole struct {
+	ID          int    `json:"id"`
+	Description string `json:"description"`
+	Name        string `json:"name"`
+}
+type ExecuteRole struct {
+	ID          int    `json:"id"`
+	Description string `json:"description"`
+	Name        string `json:"name"`
+}
+type NotificationAdminRole struct {
+	ID          int    `json:"id"`
+	Description string `json:"description"`
+	Name        string `json:"name"`
+}
+type WorkflowAdminRole struct {
+	ID          int    `json:"id"`
+	Description string `json:"description"`
+	Name        string `json:"name"`
+}
+type CredentialAdminRole struct {
+	ID          int    `json:"id"`
+	Description string `json:"description"`
+	Name        string `json:"name"`
+}
+type JobTemplateAdminRole struct {
+	ID          int    `json:"id"`
+	Description string `json:"description"`
+	Name        string `json:"name"`
+}
+type ProjectAdminRole struct {
+	ID          int    `json:"id"`
+	Description string `json:"description"`
+	Name        string `json:"name"`
+}
+type AuditorRole struct {
+	ID          int    `json:"id"`
+	Description string `json:"description"`
+	Name        string `json:"name"`
+}
+type InventoryAdminRole struct {
+	ID          int    `json:"id"`
+	Description string `json:"description"`
+	Name        string `json:"name"`
+}
+
+type RelatedFieldCounts struct {
+	JobTemplates int `json:"job_templates"`
+	Users        int `json:"users"`
+	Teams        int `json:"teams"`
+	Admins       int `json:"admins"`
+	Inventories  int `json:"inventories"`
+	Projects     int `json:"projects"`
+}
+type SummaryFields struct {
+	CreatedBy          CreatedBy          `json:"created_by"`
+	ModifiedBy         ModifiedBy         `json:"modified_by"`
+	ObjectRoles        ObjectRoles        `json:"object_roles"`
+	UserCapabilities   UserCapabilities   `json:"user_capabilities"`
+	RelatedFieldCounts RelatedFieldCounts `json:"related_field_counts"`
+}
