@@ -120,12 +120,20 @@ type ApplyRole struct {
 
 // ObjectRoles represents the awx api object roles.
 type ObjectRoles struct {
-	UseRole     *ApplyRole `json:"use_role"`
-	AdminRole   *ApplyRole `json:"admin_role"`
-	AdhocRole   *ApplyRole `json:"adhoc_role"`
-	UpdateRole  *ApplyRole `json:"update_role"`
-	ReadRole    *ApplyRole `json:"read_role"`
-	ExecuteRole *ApplyRole `json:"execute_role"`
+	UseRole               *ApplyRole             `json:"use_role"`
+	AdminRole             *ApplyRole             `json:"admin_role"`
+	AdhocRole             *ApplyRole             `json:"adhoc_role"`
+	UpdateRole            *ApplyRole             `json:"update_role"`
+	ReadRole              *ApplyRole             `json:"read_role"`
+	ExecuteRole           *ApplyRole             `json:"execute_role"`
+	MemberRole            *MemberRole            `json:"member_role"`
+	NotificationAdminRole *NotificationAdminRole `json:"notification_admin_role"`
+	WorkflowAdminRole     *WorkflowAdminRole     `json:"workflow_admin_role"`
+	CredentialAdminRole   *CredentialAdminRole   `json:"credential_admin_role"`
+	JobTemplateAdminRole  *JobTemplateAdminRole  `json:"job_template_admin_role"`
+	ProjectAdminRole      *ProjectAdminRole      `json:"project_admin_role"`
+	AuditorRole           *AuditorRole           `json:"auditor_role"`
+	InventoryAdminRole    *InventoryAdminRole    `json:"inventory_admin_role"`
 }
 
 // UserCapabilities represents the awx api user capabilities.
@@ -670,7 +678,7 @@ type Organization struct {
 	Modified         time.Time     `json:"modified"`
 	Name             string        `json:"name"`
 	Description      string        `json:"description"`
-	CustomVirtualenv interface{}   `json:"custom_virtualenv"`
+	CustomVirtualEnv interface{}   `json:"custom_virtualenv"`
 }
 
 type Team struct {
