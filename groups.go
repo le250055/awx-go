@@ -101,10 +101,10 @@ func (g *GroupService) DeleteGroup(id int) (*Group, error) {
 	return result, nil
 }
 
-func (g *GroupService) AddChildGroup(groupID, childID string) (*Group, error) {
+func (g *GroupService) AddChildGroup(groupID, childID int) (*Group, error) {
 	result := new(Group)
-	endpoint := fmt.Sprintf("/api/v2/groups/%d/children", groupID)
-	payload := map[string]string{
+	endpoint := fmt.Sprintf("/api/v2/groups/%d/children/", groupID)
+	payload := map[string]int{
 		"id": childID,
 	}
 
