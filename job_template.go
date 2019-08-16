@@ -114,3 +114,29 @@ func (jt *JobTemplateService) DeleteJobTemplate(id int) (*JobTemplate, error) {
 
 	return result, nil
 }
+
+func (jt *JobTemplateService) AddJobTemplateCredential(id int) (*JobTemplate, error) {
+	result := new(JobTemplate)
+	endpoint := fmt.Sprintf("/api/v2/job_templates/%d/credentials", id)
+
+	payload := map[string]int{
+		"id": id,
+	}
+
+	jsonPayload, err := json.Marshal(payload)
+
+	if err != nil {
+		return nil, err
+	}
+
+	resp, err := jt.client.Requester.PostJSON(endpoint, bytes.NewReader(jsonPayload), result, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := CheckResponse(resp); err != nil {
+		return nil, err
+	}
+
+	return result, nil
+}
