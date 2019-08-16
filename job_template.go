@@ -129,7 +129,7 @@ func (jt *JobTemplateService) AddJobTemplateCredential(id int) (*JobTemplate, er
 		return nil, err
 	}
 
-	resp, err := jt.client.Requester.PostJSON(endpoint, bytes.NewReader(jsonPayload), result, nil)
+	resp, err := jt.client.Requester.PostJSON(endpoint, bytes.NewReader(jsonPayload), result, map[string]string{})
 	if err != nil {
 		return nil, err
 	}
