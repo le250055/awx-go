@@ -115,6 +115,23 @@ func (jt *JobTemplateService) DeleteJobTemplate(id int) (*JobTemplate, error) {
 	return result, nil
 }
 
+// DeleteJobTemplate deletes a job template
+func (jt *JobTemplateService) GetJobTemplate(id int) (*JobTemplate, error) {
+	result := new(JobTemplate)
+	endpoint := fmt.Sprintf("/api/v2/job_templates/%d", id)
+
+	resp, err := jt.client.Requester.Get(endpoint, result, map[string]string{})
+	if err != nil {
+		return nil, err
+	}
+
+	if err := CheckResponse(resp); err != nil {
+		return nil, err
+	}
+
+	return result, nil
+}
+
 func (jt *JobTemplateService) AddJobTemplateCredential(id int) (*JobTemplate, error) {
 	result := new(JobTemplate)
 	endpoint := fmt.Sprintf("/api/v2/job_templates/%d/credentials", id)
