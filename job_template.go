@@ -134,7 +134,7 @@ func (jt *JobTemplateService) GetJobTemplate(id int) (*JobTemplate, error) {
 
 func (jt *JobTemplateService) AddJobTemplateCredential(jobTemplateID int, credID int) (*JobTemplate, error) {
 	result := new(JobTemplate)
-	endpoint := fmt.Sprintf("/api/v2/job_templates/%d/credentials", jobTemplateID)
+	endpoint := fmt.Sprintf("/api/v2/job_templates/%d/credentials/", jobTemplateID)
 
 	payload := map[string]int{
 		"id": credID,
