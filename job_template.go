@@ -115,7 +115,7 @@ func (jt *JobTemplateService) DeleteJobTemplate(id int) (*JobTemplate, error) {
 	return result, nil
 }
 
-// DeleteJobTemplate deletes a job template
+// GetJobTemplate gets a job template
 func (jt *JobTemplateService) GetJobTemplate(id int) (*JobTemplate, error) {
 	result := new(JobTemplate)
 	endpoint := fmt.Sprintf("/api/v2/job_templates/%d", id)
@@ -132,12 +132,12 @@ func (jt *JobTemplateService) GetJobTemplate(id int) (*JobTemplate, error) {
 	return result, nil
 }
 
-func (jt *JobTemplateService) AddJobTemplateCredential(id int) (*JobTemplate, error) {
+func (jt *JobTemplateService) AddJobTemplateCredential(jobTemplateID int, credID int) (*JobTemplate, error) {
 	result := new(JobTemplate)
-	endpoint := fmt.Sprintf("/api/v2/job_templates/%d/credentials", id)
+	endpoint := fmt.Sprintf("/api/v2/job_templates/%d/credentials", jobTemplateID)
 
 	payload := map[string]int{
-		"id": id,
+		"id": credID,
 	}
 
 	jsonPayload, err := json.Marshal(payload)
