@@ -80,6 +80,7 @@ type Related struct {
 	AdHocCommandEvents           string `json:"ad_hoc_command_events"`
 	Children                     string `json:"children"`
 	AnsibleFacts                 string `json:"ansible_facts"`
+	Callback                     string `json:"callback"`
 }
 
 // OrgnizationSummary represents the awx api orgnization summary fields.
@@ -344,6 +345,7 @@ type JobTemplate struct {
 	CustomVirtualenv      interface{} `json:"custom_virtualenv"`
 	Credential            int         `json:"credential"`
 	VaultCredential       interface{} `json:"vault_credential"`
+	AllowCallbacks        bool        `json:"allow_callbacks"`
 }
 
 // JobLaunch represents the awx api job launch.
@@ -789,4 +791,23 @@ type SummaryFields struct {
 	ObjectRoles        ObjectRoles        `json:"object_roles"`
 	UserCapabilities   UserCapabilities   `json:"user_capabilities"`
 	RelatedFieldCounts RelatedFieldCounts `json:"related_field_counts"`
+}
+
+type SurveySpec struct {
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	Spec        []Spec `json:"spec"`
+}
+
+type Spec struct {
+	QuestionName        string `json:"question_name"`
+	QuestionDescription string `json:"question_description"`
+	Required            bool   `json:"required"`
+	Type                string `json:"type"`
+	Variable            string `json:"variable"`
+	Min                 int    `json:"min"`
+	Max                 int    `json:"max"`
+	Default             string `json:"default"`
+	Choices             string `json:"choices"`
+	NewQuestion         bool   `json:"new_question"`
 }

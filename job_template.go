@@ -4,6 +4,8 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"github.com/twinj/uuid"
+	"strconv"
 )
 
 // JobTemplateService implements awx job template apis.
@@ -33,7 +35,7 @@ func (jt *JobTemplateService) ListJobTemplates(params map[string]string) ([]*Job
 	return result.Results, result, nil
 }
 
-// Launch lauchs a job with the job template.
+// Launch launches a job with the job template.
 func (jt *JobTemplateService) Launch(id int, data *JobLaunchOpts, params map[string]string) (*JobLaunch, error) {
 	result := new(JobLaunch)
 	endpoint := fmt.Sprintf("/api/v2/job_templates/%d/launch/", id)
@@ -55,10 +57,39 @@ func (jt *JobTemplateService) Launch(id int, data *JobLaunchOpts, params map[str
 	return result, nil
 }
 
+// CreateJobTemplateCallBack executes a PATCH HTTP Request to create the callback url and the generated host_config_key
+func (jt *JobTemplateService) CreateJobTemplateCallBack(template *JobTemplate) (*JobTemplate, error) {
+	if template.ID == 0 {
+		return nil, fmt.Errorf("Job template ID must be passed")
+	}
+
+	endpoint := "/api/v2/job_templates/" + strconv.Itoa(template.ID)
+	template.AllowCallbacks = true
+	template.HostConfigKey = uuid.NewV4().String()
+
+	jsonPayload, err := json.Marshal(template)
+
+	if err != nil {
+		return nil, err
+	}
+
+	resp, err := jt.client.Requester.PatchJSON(endpoint, bytes.NewReader(jsonPayload), template, map[string]string{})
+
+	if err != nil {
+		return nil, err
+	}
+
+	if err := CheckResponse(resp); err != nil {
+		return nil, err
+	}
+
+	return template, nil
+}
+
 // CreateJobTemplate creates a job template
 func (jt *JobTemplateService) CreateJobTemplate(data map[string]interface{}, params map[string]string) (*JobTemplate, error) {
 	result := new(JobTemplate)
-	mandatoryFields = []string{"name", "job_type", "inventory", "project"}
+	mandatoryFields = []string{"name", "job_type", "inventory", "project", "playbook"}
 	validate, status := ValidateParams(data, mandatoryFields)
 	if !status {
 		err := fmt.Errorf("Mandatory input arguments are absent: %s", validate)
@@ -77,6 +108,11 @@ func (jt *JobTemplateService) CreateJobTemplate(data map[string]interface{}, par
 	if err := CheckResponse(resp); err != nil {
 		return nil, err
 	}
+
+	if result.AllowCallbacks {
+		return jt.CreateJobTemplateCallBack(result)
+	}
+
 	return result, nil
 }
 
@@ -157,4 +193,20 @@ func (jt *JobTemplateService) AddJobTemplateCredential(jobTemplateID int, credID
 	}
 
 	return result, nil
+}
+
+func (jt *JobTemplateService) GetSurveySpec(jobTemplate *JobTemplate) ([]byte, error) {
+	endpoint := jobTemplate.Related.SurveySpec
+	spec := make(map[string]interface{})
+	resp, err := jt.client.Requester.Get(endpoint, spec, map[string]string{})
+
+	if err != nil {
+		return nil, err
+	}
+
+	if err = CheckResponse(resp); err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(spec)
 }

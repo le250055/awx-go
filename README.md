@@ -1,5 +1,7 @@
 # awx-go
 
+FORKED from https://github.com/mauromedda/awx-go
+
 [![Build Status](https://travis-ci.org/Colstuwjx/awx-go.svg?branch=master)](https://travis-ci.org/Colstuwjx/awx-go)
 [![Go Report Card](https://goreportcard.com/badge/github.com/Colstuwjx/awx-go)](https://goreportcard.com/report/github.com/Colstuwjx/awx-go)
 [![codecov](https://codecov.io/gh/Colstuwjx/awx-go/branch/master/graph/badge.svg)](https://codecov.io/gh/Colstuwjx/awx-go)
@@ -23,7 +25,7 @@ We can simply import awx-go and call its services, such as PingService:
 ```
 import (
     "log"
-    awxGo "github.com/Colstuwjx/awx-go"
+    awxGo "gitlab.com/dhendel/awx-go"
 )
 
 func main() {
@@ -36,17 +38,3 @@ func main() {
     log.Println("Ping awx: ", result)
 }
 ```
-
-More examples could be found at [here](https://github.com/Colstuwjx/awx-go/tree/master/examples).
-
-## Roadmap
-
-awx-go is still in developing, and it's roadmap could be found at [here](https://github.com/Colstuwjx/awx-go/blob/master/ROADMAP.md).
-
-## Contribute
-
-There are many ways to contribute to awx-go.
-
-* Submit bugs via [Github issues](https://github.com/Colstuwjx/awx-go/issues);
-* Take [pull request](https://github.com/Colstuwjx/awx-go/pulls) for fixes or features;
-* Mail [me](mailto:wjx_colstu@hotmail.com)

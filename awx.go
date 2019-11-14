@@ -26,7 +26,7 @@ type AWX struct {
 	GroupService          *GroupService
 	HostService           *HostService
 	OrganizationService   *OrganizationService
-	TeamService	*TeamService
+	TeamService           *TeamService
 }
 
 // Client implement http client.
@@ -106,6 +106,9 @@ func NewAWX(baseURL, userName, passwd string, client *http.Client) *AWX {
 			client: awxClient,
 		},
 		HostService: &HostService{
+			client: awxClient,
+		},
+		OrganizationService: &OrganizationService{
 			client: awxClient,
 		},
 	}

@@ -104,7 +104,7 @@ func (u *UserService) DeleteUser(id int) (*User, error) {
 
 func (u *UserService) RevokeRole(id, roleID string) error {
 	result := new(User)
-	endpoint := fmt.Sprintf("/api/v2/users/%d", id)
+	endpoint := fmt.Sprintf("/api/v2/users/%s", id)
 	jsonPayload := map[string]string{
 		"disassociate": roleID,
 	}
@@ -128,7 +128,7 @@ func (u *UserService) RevokeRole(id, roleID string) error {
 
 func (u *UserService) GrantRole(id, roleID string) error {
 	result := new(User)
-	endpoint := fmt.Sprintf("/api/v2/users/%d", id)
+	endpoint := fmt.Sprintf("/api/v2/users/%s", id)
 	jsonPayload := map[string]string{
 		"id": roleID,
 	}
