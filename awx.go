@@ -111,5 +111,6 @@ func NewAWX(baseURL, userName, passwd string, client *http.Client) *AWX {
 		OrganizationService: &OrganizationService{
 			client: awxClient,
 		},
+		TeamService: &TeamService{client: awxClient},
 	}
 }
