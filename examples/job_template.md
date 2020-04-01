@@ -7,7 +7,7 @@
 ```go
 import (
     "log"
-    awxGo "github.com/Colstuwjx/awx-go"
+    awxGo "github.com/davidfischer-ch/awx-go"
 )
 
 fun main() {
@@ -26,7 +26,7 @@ fun main() {
 ```go
 import (
     "log"
-    awxGo "github.com/Colstuwjx/awx-go"
+    awxGo "github.com/davidfischer-ch/awx-go"
 )
 
 fun main() {
@@ -53,7 +53,7 @@ fun main() {
 import (
     "log"
 
-    awxGo "github.com/Colstuwjx/awx-go"
+    awxGo "github.com/davidfischer-ch/awx-go"
 )
 
 func main() {
@@ -82,7 +82,7 @@ func main() {
 import (
     "log"
 
-    awxGo "github.com/Colstuwjx/awx-go"
+    awxGo "github.com/davidfischer-ch/awx-go"
 )
 
 func main() {
@@ -105,7 +105,7 @@ func main() {
 import (
     "log"
 
-    awxGo "github.com/Colstuwjx/awx-go"
+    awxGo "github.com/davidfischer-ch/awx-go"
 )
 
 func main() {

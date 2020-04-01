@@ -4,7 +4,7 @@ go:
   - 1.9.x
   - 1.10.x
 
-go_import_path: github.com/Colstuwjx/awx-go
+go_import_path: github.com/davidfischer-ch/awx-go
 
 install:
   - go get -u github.com/alecthomas/gometalinter

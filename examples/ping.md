@@ -7,7 +7,7 @@
 ```go
 import (
     "log"
-    awxGo "github.com/Colstuwjx/awx-go"
+    awxGo "github.com/davidfischer-ch/awx-go"
 )
 
 fun main() {
