@@ -35,7 +35,7 @@ func (suite *OrganizationsTestSuite) SetupTest() {
 func (suite *OrganizationsTestSuite) TestCreateDeleteOrganization() {
 	name := fmt.Sprintf("Testing-%v", rand.Int())
 	org, err := suite.service.CreateOrganization(map[string]interface{}{
-		"name": name,
+		"name":        name,
 		"description": "A Test organization",
 	}, map[string]string{})
 	suite.Nil(err)
