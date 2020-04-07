@@ -209,7 +209,6 @@ type Project struct {
 	NextJobRun            time.Time `json:"next_job_run"`
 	Status                string    `json:"status"`
 	Organization          int       `json:"organization"`
-	ScmDeleteOnNextUpdate bool      `json:"scm_delete_on_next_update"`
 	ScmUpdateOnLaunch     bool      `json:"scm_update_on_launch"`
 	ScmUpdateCacheTimeout int       `json:"scm_update_cache_timeout"`
 	ScmRevision           string    `json:"scm_revision"`
