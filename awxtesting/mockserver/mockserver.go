@@ -8,7 +8,7 @@ import (
 	"regexp"
 	"time"
 
-	"github.com/davidfischer-ch/awx-go/awxtesting/mockserver/mockdata"
+	"github.com/le250055/awx-go/awxtesting/mockserver/mockdata"
 )
 
 type mockServer struct {

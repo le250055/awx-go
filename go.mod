@@ -1,4 +1,4 @@
-module github.com/davidfischer-ch/awx-go
+module github.com/le250055/awx-go
 
 go 1.12
 

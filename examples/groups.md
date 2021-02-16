@@ -9,7 +9,7 @@ package main
 
 import (
     "log"
-    awxGo "github.com/davidfischer-ch/awx-go"
+    awxGo "github.com/le250055/awx-go"
 )
 
 func main() {
@@ -32,7 +32,7 @@ package main
 
 import (
     "log"
-    awxGo "github.com/davidfischer-ch/awx-go"
+    awxGo "github.com/le250055/awx-go"
 )
 
 fun main() {
@@ -57,7 +57,7 @@ package main
 
 import (
     "log"
-    awxGo "github.com/davidfischer-ch/awx-go"
+    awxGo "github.com/le250055/awx-go"
 )
 
 fun main() {
@@ -81,7 +81,7 @@ package main
 
 import (
     "log"
-    awxGo "github.com/davidfischer-ch/awx-go"
+    awxGo "github.com/le250055/awx-go"
 )
 
 fun main() {

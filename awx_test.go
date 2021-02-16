@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/davidfischer-ch/awx-go/awxtesting/mockserver"
+	"github.com/le250055/awx-go/awxtesting/mockserver"
 )
 
 var (
