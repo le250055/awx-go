@@ -255,11 +255,11 @@ func TestRelaunchJob(t *testing.T) {
 				},
 
 				Credential: &Credential{
-					Description:      "",
-					CredentialTypeID: 1,
-					ID:               1,
-					Kind:             "ssh",
-					Name:             "Demo Credential",
+					Description:    "",
+					CredentialType: 1,
+					ID:             1,
+					Kind:           "ssh",
+					Name:           "Demo Credential",
 				},
 
 				UnifiedJobTemplate: &UnifiedJobTemplate{
@@ -304,11 +304,11 @@ func TestRelaunchJob(t *testing.T) {
 				ExtraCredentials: []interface{}{},
 				Credentials: []Credential{
 					{
-						Description:      "",
-						CredentialTypeID: 1,
-						ID:               1,
-						Kind:             "ssh",
-						Name:             "Demo Credential",
+						Description:    "",
+						CredentialType: 1,
+						ID:             1,
+						Kind:           "ssh",
+						Name:           "Demo Credential",
 					},
 				},
 			},

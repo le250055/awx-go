@@ -1,7 +1,7 @@
 package awx
 
 // TODO Add mock data and then enable test
-/*
+
 import (
 	"testing"
 	"time"
@@ -18,29 +18,34 @@ func TestListCredentials(t *testing.T) {
 					ObjectRoles:    "/api/v2/credentials/1/object_roles/",
 					AccessList:     "/api/v2/credentials/1/access_list/",
 					CredentialType: "/api/v2/credential_types/1/",
-					ModifiedBy:     "/api/v2/users/4/",
+					CreatedBy:      "/api/v2/users/1/",
+					ModifiedBy:     "/api/v2/users/1/",
 					OwnerUsers:     "/api/v2/credentials/1/owner_users/",
 					OwnerTeams:     "/api/v2/credentials/1/owner_teams/",
-					Organization:   "/api/v2/organizations/1/",
 					Copy:           "/api/v2/credentials/1/copy/",
 					ActivityStream: "/api/v2/credentials/1/activity_stream/",
 				},
 				SummaryFields: &Summary{
-					Organization: &OrganizationSummary{
+					CredentialType: &CredentialTypeSummary{
 						ID:          1,
-						Name:        "Default",
+						Name:        "Machine",
 						Description: "",
 					},
-					Project: &Project{},
+					CreatedBy: &ByUserSummary{
+						ID:        1,
+						Username:  "admin",
+						FirstName: "",
+						LastName:  "",
+					},
 					ModifiedBy: &ByUserSummary{
-						ID:        4,
+						ID:        1,
 						Username:  "admin",
 						FirstName: "",
 						LastName:  "",
 					},
 					ObjectRoles: &ObjectRoles{
 						AdminRole: &ObjectRole{
-							ID:          18,
+							ID:          19,
 							Description: "Can manage all aspects of the credential",
 							Name:        "Admin",
 						},
@@ -50,7 +55,7 @@ func TestListCredentials(t *testing.T) {
 							Name:        "Use",
 						},
 						ReadRole: &ObjectRole{
-							ID:          19,
+							ID:          21,
 							Description: "May view settings for the credential",
 							Name:        "Read",
 						},
@@ -60,29 +65,40 @@ func TestListCredentials(t *testing.T) {
 						Delete: true,
 						Copy:   true,
 					},
+					Owners: []OwnerUserSummary{
+						{
+							ID:          1,
+							Type:        "user",
+							Name:        "admin",
+							URL:         "/api/v2/users/1/",
+							Description: "",
+						},
+					},
 				},
 				Created: func() time.Time {
-					t, _ := time.Parse(time.RFC3339, "2018-12-01T12:10:00.496424Z")
+					t, _ := time.Parse(time.RFC3339, "2021-01-11T17:37:27.381945Z")
 					return t
 				}(),
 				Modified: func() time.Time {
-					t, _ := time.Parse(time.RFC3339, "2018-12-07T16:17:48.131210Z")
+					t, _ := time.Parse(time.RFC3339, "2021-01-11T17:37:27.381975Z")
 					return t
 				}(),
 				Name:           "Demo Credential",
 				Description:    "",
-				Organization:   1,
 				CredentialType: 1,
 				Inputs: map[string]interface{}{
 					"username": "admin",
 				},
+				Kind:       "ssh",
+				Cloud:      false,
+				Kubernetes: false,
 			},
 		}
 	)
 
 	awx := NewAWX(testAwxHost, testAwxUserName, testAwxPasswd, nil)
 	result, _, err := awx.CredentialService.ListCredentials(map[string]string{
-		"name": "Default",
+		"name": "Demo Credential",
 	})
 
 	if err != nil {
@@ -103,29 +119,34 @@ func TestCreateCredentials(t *testing.T) {
 				ObjectRoles:    "/api/v2/credentials/1/object_roles/",
 				AccessList:     "/api/v2/credentials/1/access_list/",
 				CredentialType: "/api/v2/credential_types/1/",
-				ModifiedBy:     "/api/v2/users/4/",
+				CreatedBy:      "/api/v2/users/1/",
+				ModifiedBy:     "/api/v2/users/1/",
 				OwnerUsers:     "/api/v2/credentials/1/owner_users/",
 				OwnerTeams:     "/api/v2/credentials/1/owner_teams/",
-				Organization:   "/api/v2/organizations/1/",
 				Copy:           "/api/v2/credentials/1/copy/",
 				ActivityStream: "/api/v2/credentials/1/activity_stream/",
 			},
 			SummaryFields: &Summary{
-				Organization: &OrganizationSummary{
+				CredentialType: &CredentialTypeSummary{
 					ID:          1,
-					Name:        "Default",
+					Name:        "Machine",
 					Description: "",
 				},
-				Project: &Project{},
+				CreatedBy: &ByUserSummary{
+					ID:        1,
+					Username:  "admin",
+					FirstName: "",
+					LastName:  "",
+				},
 				ModifiedBy: &ByUserSummary{
-					ID:        4,
+					ID:        1,
 					Username:  "admin",
 					FirstName: "",
 					LastName:  "",
 				},
 				ObjectRoles: &ObjectRoles{
 					AdminRole: &ObjectRole{
-						ID:          18,
+						ID:          19,
 						Description: "Can manage all aspects of the credential",
 						Name:        "Admin",
 					},
@@ -135,7 +156,7 @@ func TestCreateCredentials(t *testing.T) {
 						Name:        "Use",
 					},
 					ReadRole: &ObjectRole{
-						ID:          19,
+						ID:          21,
 						Description: "May view settings for the credential",
 						Name:        "Read",
 					},
@@ -145,22 +166,33 @@ func TestCreateCredentials(t *testing.T) {
 					Delete: true,
 					Copy:   true,
 				},
+				Owners: []OwnerUserSummary{
+					{
+						ID:          1,
+						Type:        "user",
+						Name:        "admin",
+						URL:         "/api/v2/users/1/",
+						Description: "",
+					},
+				},
 			},
 			Created: func() time.Time {
-				t, _ := time.Parse(time.RFC3339, "2018-12-01T12:10:00.496424Z")
+				t, _ := time.Parse(time.RFC3339, "2021-01-11T17:37:27.381945Z")
 				return t
 			}(),
 			Modified: func() time.Time {
-				t, _ := time.Parse(time.RFC3339, "2018-12-07T16:17:48.131210Z")
+				t, _ := time.Parse(time.RFC3339, "2021-01-11T17:37:27.381975Z")
 				return t
 			}(),
 			Name:           "Demo Credential",
 			Description:    "",
-			Organization:   1,
 			CredentialType: 1,
 			Inputs: map[string]interface{}{
 				"username": "admin",
 			},
+			Kind:       "ssh",
+			Cloud:      false,
+			Kubernetes: false,
 		}
 	)
 
@@ -188,29 +220,34 @@ func TestUpdateCredentials(t *testing.T) {
 				ObjectRoles:    "/api/v2/credentials/1/object_roles/",
 				AccessList:     "/api/v2/credentials/1/access_list/",
 				CredentialType: "/api/v2/credential_types/1/",
-				ModifiedBy:     "/api/v2/users/4/",
+				CreatedBy:      "/api/v2/users/1/",
+				ModifiedBy:     "/api/v2/users/1/",
 				OwnerUsers:     "/api/v2/credentials/1/owner_users/",
 				OwnerTeams:     "/api/v2/credentials/1/owner_teams/",
-				Organization:   "/api/v2/organizations/1/",
 				Copy:           "/api/v2/credentials/1/copy/",
 				ActivityStream: "/api/v2/credentials/1/activity_stream/",
 			},
 			SummaryFields: &Summary{
-				Organization: &OrganizationSummary{
+				CredentialType: &CredentialTypeSummary{
 					ID:          1,
-					Name:        "Default",
+					Name:        "Machine",
 					Description: "",
 				},
-				Project: &Project{},
+				CreatedBy: &ByUserSummary{
+					ID:        1,
+					Username:  "admin",
+					FirstName: "",
+					LastName:  "",
+				},
 				ModifiedBy: &ByUserSummary{
-					ID:        4,
+					ID:        1,
 					Username:  "admin",
 					FirstName: "",
 					LastName:  "",
 				},
 				ObjectRoles: &ObjectRoles{
 					AdminRole: &ObjectRole{
-						ID:          18,
+						ID:          19,
 						Description: "Can manage all aspects of the credential",
 						Name:        "Admin",
 					},
@@ -220,7 +257,7 @@ func TestUpdateCredentials(t *testing.T) {
 						Name:        "Use",
 					},
 					ReadRole: &ObjectRole{
-						ID:          19,
+						ID:          21,
 						Description: "May view settings for the credential",
 						Name:        "Read",
 					},
@@ -230,40 +267,46 @@ func TestUpdateCredentials(t *testing.T) {
 					Delete: true,
 					Copy:   true,
 				},
+				Owners: []OwnerUserSummary{
+					{
+						ID:          1,
+						Type:        "user",
+						Name:        "admin",
+						URL:         "/api/v2/users/1/",
+						Description: "",
+					},
+				},
 			},
 			Created: func() time.Time {
-				t, _ := time.Parse(time.RFC3339, "2018-12-01T12:10:00.496424Z")
+				t, _ := time.Parse(time.RFC3339, "2021-01-11T17:37:27.381945Z")
 				return t
 			}(),
 			Modified: func() time.Time {
-				t, _ := time.Parse(time.RFC3339, "2018-12-07T16:17:48.131210Z")
+				t, _ := time.Parse(time.RFC3339, "2021-01-11T17:37:27.381975Z")
 				return t
 			}(),
 			Name:           "Demo Credential",
-			Description:    "Demo Credential",
-			Organization:   1,
+			Description:    "Demo Credential Updated",
 			CredentialType: 1,
 			Inputs: map[string]interface{}{
 				"username": "admin",
 			},
+			Kind:       "ssh",
+			Cloud:      false,
+			Kubernetes: false,
 		}
 	)
 
 	awx := NewAWX(testAwxHost, testAwxUserName, testAwxPasswd, nil)
 	result, err := awx.CredentialService.UpdateCredential(1, map[string]interface{}{
-		"name":            "Demo Credential",
-		"description":     "Demo credential",
-		"organization":    1,
-		"credential_type": 1,
-		"inputs": map[string]interface{}{
-			"username": "admin",
-		},
+		"name":        "Demo Credential",
+		"description": "Demo Credential Updated",
 	}, map[string]string{})
 	if err != nil {
-		t.Fatalf("CreateCredentials err: %s", err)
+		t.Fatalf("TestUpdateCredentials err: %s", err)
 	} else {
 		checkAPICallResult(t, expectUpdateCredentialsResponse, result)
-		t.Log("CreateCredentials passed!")
+		t.Log("TestUpdateCredentials passed!")
 	}
 }
 
@@ -282,4 +325,3 @@ func TestDeleteCredentials(t *testing.T) {
 		t.Log("DeleteCredentials passed!")
 	}
 }
-*/

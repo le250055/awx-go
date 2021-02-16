@@ -81,6 +81,9 @@ type Related struct {
 	Children                     string `json:"children"`
 	AnsibleFacts                 string `json:"ansible_facts"`
 	Callback                     string `json:"callback"`
+	CredentialType               string `json:"credential_type"`
+	OwnerUsers                   string `json:"owner_users"`
+	OwnerTeams                   string `json:"owner_teams"`
 }
 
 // OrganizationSummary represents the awx api organization summary fields.
@@ -107,6 +110,13 @@ type JobTemplateSummary struct {
 
 // InstanceGroupSummary represents the awx api instance group summary fields.
 type InstanceGroupSummary struct {
+	ID          int    `json:"id"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+// CredentialTypeSummary represents the awx api credentials summary fields.
+type CredentialTypeSummary struct {
 	ID          int    `json:"id"`
 	Name        string `json:"name"`
 	Description string `json:"description"`
@@ -174,6 +184,8 @@ type Summary struct {
 	UnifiedJobTemplate *UnifiedJobTemplate    `json:"unified_job_template"`
 	ExtraCredentials   []interface{}          `json:"extra_credentials"`
 	ProjectUpdate      *ProjectUpdate         `json:"project_update"`
+	CredentialType     *CredentialTypeSummary `json:"credential_type"`
+	Owners             []OwnerUserSummary     `json:"owners"`
 }
 
 // ProjectUpdate represents the awx api project update.
@@ -249,11 +261,22 @@ type Inventory struct {
 
 // Credential represents the awx api credential.
 type Credential struct {
-	Description      string `json:"description"`
-	CredentialTypeID int    `json:"credential_type_id"`
-	ID               int    `json:"id"`
-	Kind             string `json:"kind"`
-	Name             string `json:"name"`
+	ID             int                    `json:"id"`
+	Type           string                 `json:"type"`
+	URL            string                 `json:"url"`
+	Related        *Related               `json:"related"`
+	SummaryFields  *Summary               `json:"summary_fields"`
+	Created        time.Time              `json:"created"`
+	Modified       time.Time              `json:"modified"`
+	Name           string                 `json:"name"`
+	Description    string                 `json:"description"`
+	Organization   string                 `json:"organization"`
+	CredentialType int                    `json:"credential_type"`
+	ManagedByTower bool                   `json:"managed_by_tower"`
+	Inputs         map[string]interface{} `json:"inputs"`
+	Kind           string                 `json:"kind"`
+	Cloud          bool                   `json:"cloud"`
+	Kubernetes     bool                   `json:"kubernetes"`
 }
 
 // UnifiedJobTemplate represents the awx api unified job template.
@@ -645,6 +668,14 @@ type User struct {
 	Password        string      `json:"password"`
 	LdapDn          string      `json:"ldap_dn"`
 	ExternalAccount interface{} `json:"external_account"`
+}
+
+type OwnerUserSummary struct {
+	ID          int    `json:"id"`
+	Type        string `json:"type"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	URL         string `json:"url"`
 }
 
 // Group represents a group

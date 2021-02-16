@@ -249,6 +249,30 @@ func (s *mockServer) HostsHandler(rw http.ResponseWriter, req *http.Request) {
 	}
 }
 
+func (s *mockServer) CredentialsHandler(rw http.ResponseWriter, req *http.Request) {
+	switch {
+	case req.Method == "GET":
+		result := mockdata.MockedListCredentialsResponse
+		rw.Write(result)
+		return
+	case req.Method == "POST":
+		result := mockdata.MockedCreateCredentialResponse
+		rw.Write(result)
+		return
+	case req.Method == "PATCH", req.Method == "PUT":
+		result := mockdata.MockedUpdateCredentialResponse
+		rw.Write(result)
+		return
+	case req.Method == "DELETE":
+		result := mockdata.MockedDeleteCredentialResponse
+		rw.Write(result)
+		return
+	default:
+		result := mockdata.MockedListCredentialsResponse
+		rw.Write(result)
+	}
+}
+
 var server *mockServer
 
 // Run mock server
@@ -269,6 +293,7 @@ func initServer() {
 	mux.Handle("/api/v2/users/", http.HandlerFunc(server.UsersHandler))
 	mux.Handle("/api/v2/groups/", http.HandlerFunc(server.GroupsHandler))
 	mux.Handle("/api/v2/hosts/", http.HandlerFunc(server.HostsHandler))
+	mux.Handle("/api/v2/credentials/", http.HandlerFunc(server.CredentialsHandler))
 	server.server.Handler = mux
 	server.server.Addr = ":8080"
 }

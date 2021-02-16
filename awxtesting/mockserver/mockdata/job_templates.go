@@ -101,7 +101,7 @@ var (
                 "credentials": [
                     {
                         "description": "",
-                        "credential_type_id": 1,
+                        "credential_type": 1,
                         "id": 1,
                         "kind": "ssh",
                         "name": "Demo Credential"
@@ -202,7 +202,7 @@ var (
         },
         "credential": {
             "description": "",
-            "credential_type_id": 1,
+            "credential_type": 1,
             "id": 1,
             "kind": "ssh",
             "name": "Demo Credential"
@@ -244,7 +244,7 @@ var (
         "credentials": [
             {
                 "description": "",
-                "credential_type_id": 1,
+                "credential_type": 1,
                 "id": 1,
                 "kind": "ssh",
                 "name": "Demo Credential"
@@ -400,7 +400,7 @@ var (
         "credentials": [
             {
                 "description": "",
-                "credential_type_id": 1,
+                "credential_type": 1,
                 "id": 1,
                 "kind": "ssh",
                 "name": "Demo Credential"
@@ -545,7 +545,7 @@ var (
                 "credentials": [
                     {
                         "description": "",
-                        "credential_type_id": 1,
+                        "credential_type": 1,
                         "id": 1,
                         "kind": "ssh",
                         "name": "Demo Credential"
